@@ -3,13 +3,22 @@ package com.faxb.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Book {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String title;
 	private String description;
 	private int numberOfPages;
 	private BigDecimal price;
+	
 	public Integer getId() {
 		return id;
 	}
