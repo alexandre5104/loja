@@ -1,12 +1,15 @@
 package com.faxb.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Book {
@@ -18,6 +21,9 @@ public class Book {
 	private String description;
 	private int numberOfPages;
 	private BigDecimal price;
+	
+	@ManyToMany
+	private List<Author> authors = new ArrayList<>();
 	
 	public Integer getId() {
 		return id;
@@ -70,5 +76,9 @@ public class Book {
 		return "Book [id=" + id + ", title=" + title + ", description=" + description + ", numberOfPages="
 				+ numberOfPages + ", price=" + price + "]";
 	}	
+	
+	public void add(Author author){
+		authors.add(author);
+	}
 	
 }
