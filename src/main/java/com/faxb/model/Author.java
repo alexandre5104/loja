@@ -47,7 +47,4 @@ public class Author {
 		Author other = (Author) obj;
 		return Objects.equals(id, other.id) && Objects.equals(name, other.name);
 	}
-	
-	
-
 }

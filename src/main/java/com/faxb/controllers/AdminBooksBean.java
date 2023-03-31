@@ -3,12 +3,15 @@ package com.faxb.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.faxb.helpers.MessagesHelper;
 import com.faxb.model.Author;
 import com.faxb.model.Book;
 import com.faxb.repository.RepositoryBook;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.inject.Model;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
@@ -19,6 +22,9 @@ public class AdminBooksBean {
 
 	@Inject
 	private RepositoryBook repositoryBook;
+	
+	@Inject
+	private MessagesHelper messageHelper;
 
 	public List<Integer> getSelectedAuthorsIds() {
 		return selectedAuthorsIds;
@@ -37,12 +43,14 @@ public class AdminBooksBean {
 		this.authors = repositoryBook.getAuthors();
 	}
 
-
 	@Transactional
-	public void save(){
+	public String save(){
 		populateBookAuthor();
 		repositoryBook.save(book);
-		clearObjects();
+			
+			messageHelper.addFlash(new FacesMessage("Salvo com sucesso!"));
+		
+		return "/books/books?faces-redirect=true";
 	}
 
 	public Book getBook() {
@@ -61,11 +69,6 @@ public class AdminBooksBean {
 
 	public List<Author> getAuthors() {
 		return authors;
-	}
-
-	private void clearObjects() {
-		this.book = new Book();
-		this.selectedAuthorsIds.clear();
 	}
 
 }
