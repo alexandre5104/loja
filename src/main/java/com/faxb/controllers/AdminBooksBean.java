@@ -11,7 +11,6 @@ import com.faxb.repository.RepositoryBook;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.inject.Model;
 import jakarta.faces.application.FacesMessage;
-import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
@@ -26,16 +25,6 @@ public class AdminBooksBean {
 	@Inject
 	private MessagesHelper messageHelper;
 
-	public List<Integer> getSelectedAuthorsIds() {
-		return selectedAuthorsIds;
-	}
-
-	public void setSelectedAuthorsIds(List<Integer> selectedAuthorsIds) {
-		this.selectedAuthorsIds = selectedAuthorsIds;
-	}
-
-	private List<Integer> selectedAuthorsIds = new ArrayList<Integer>();
-
 	private List<Author> authors = new ArrayList<Author>();
 
 	@PostConstruct
@@ -45,11 +34,8 @@ public class AdminBooksBean {
 
 	@Transactional
 	public String save(){
-		populateBookAuthor();
 		repositoryBook.save(book);
-			
 			messageHelper.addFlash(new FacesMessage("Salvo com sucesso!"));
-		
 		return "/books/books?faces-redirect=true";
 	}
 
@@ -59,12 +45,6 @@ public class AdminBooksBean {
 
 	public void setBook(Book book) {
 		this.book = book;
-	}
-
-	private void populateBookAuthor() {
-		selectedAuthorsIds.stream().map((id) -> { 
-			return new Author(id); 
-		}).forEach(book::add);
 	}
 
 	public List<Author> getAuthors() {

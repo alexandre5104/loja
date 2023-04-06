@@ -1,6 +1,7 @@
 package com.faxb.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -10,6 +11,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Book {
@@ -17,14 +25,37 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@NotBlank(message = "O campo title não foi prenchido!")
+	@NotNull
 	private String title;
+	
+	@NotBlank
+	@NotNull
+	@Size(min = 10)
 	private String description;
+	
+	@Min(50)
 	private int numberOfPages;
+	
+	@DecimalMin("20")
 	private BigDecimal price;
 	
 	@ManyToMany
-	private List<Author> authors = new ArrayList<>();
+	private List<@NotNull @Valid Author> authors = new ArrayList<>();
 	
+	@NotNull
+	@Future
+	private LocalDate dateRelease;
+	
+	public LocalDate getDateRelease() {
+		return dateRelease;
+	}
+
+	public void setDateRelease(LocalDate dateRelease) {
+		this.dateRelease = dateRelease;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -94,9 +125,5 @@ public class Book {
 		return "Book [id=" + id + ", title=" + title + ", description=" + description + ", numberOfPages="
 				+ numberOfPages + ", price=" + price + "]";
 	}	
-	
-	public void add(Author author){
-		authors.add(author);
-	}
 	
 }
