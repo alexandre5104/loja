@@ -22,6 +22,7 @@ public class AdminListBooksBean {
 	private void loadObjects(){
 		this.books = repositoryBook.list();
 	}
+	
 	public List<Book> getBooks() {
 		return books;
 	}

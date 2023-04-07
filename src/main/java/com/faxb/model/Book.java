@@ -48,6 +48,8 @@ public class Book {
 	@Future
 	private LocalDate dateRelease;
 	
+	private String summaryPath;
+	
 	public LocalDate getDateRelease() {
 		return dateRelease;
 	}
@@ -124,6 +126,14 @@ public class Book {
 	public String toString() {
 		return "Book [id=" + id + ", title=" + title + ", description=" + description + ", numberOfPages="
 				+ numberOfPages + ", price=" + price + "]";
+	}
+
+	public String getSummaryPath() {
+		return summaryPath;
+	}
+
+	public void setSummaryPath(String summaryPath) {
+		this.summaryPath = summaryPath;
 	}	
 	
 }

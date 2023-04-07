@@ -46,7 +46,11 @@
 					itemLabel="#{author.name}" itemValue="#{author}" />
 			</h:selectManyListbox>
 		</div>
-	
+		
+		<div>
+			<h:outputLabel value="Capa do livro"/>
+			<h:inputFile value="#{adminBooksBean.image}"/>
+		</div>
 		
 		<h:commandButton value="Gravar" action="#{adminBooksBean.save}" />
 	</h:form>
