@@ -23,7 +23,7 @@ public class FileSaver {
 		if (!tmpDir.exists()) {
 			tmpDir.mkdir();
 		}
-		// Cria o aqrquivo
+		// Cria o arquivo
 		File file = new File(tmpDir, name);
 		// Abre a OutputStream para escrever no arquivo
 		FileOutputStream out = null;

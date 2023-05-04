@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html lang="en" xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core" xmlns:ui="jakarta.faces.facelets"
+	xmlns:pt="jakarta.faces.passthrough">
+<h:head>
+	<title>Home</title>
+</h:head>
+<h:body>
+
+	<ui:repeat var="book" value="#{homeBean.lastReleases()}">
+		<li class="col-left">
+			<a href="#{request.contextPath}/site/detalhe.xhtml?id=#{book.id}" class="block clearfix">
+				 <img width="170" height="240" src="#{book.summaryPath}" alt=" #{book.title}" title="#{book.title}" />
+					<h2 class="product-title">#{book.title}</h2>
+					<small class="buy-button">Lan&#231;amento!</small>
+			</a>
+		</li>
+	</ui:repeat>
+
+	<ui:repeat var="book" value="#{homeBean.olderBooks()}">
+		<li>
+			<a href="/products/livro-laravel-php" class="block clearfix">
+					<h2 class="product-title">#{book.title}</h2> 
+					<img width="143" height="202" src="#{book.summaryPath}" alt="#{book.title}" title="#{book.title}" />
+					<small class="buy-button">Compre</small>
+	        </a>
+		</li>
+	</ui:repeat>
+
+
+</h:body>
+
+</html>

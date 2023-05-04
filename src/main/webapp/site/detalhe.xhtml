@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html lang="en" xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core" xmlns:ui="jakarta.faces.facelets"
+	xmlns:pt="jakarta.faces.passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Detalhes do produto</title>
+	<f:metadata>
+		<f:viewParam id="id" name="id" value="#{productDetailBean.id}"/>
+		<f:viewAction action="#{productDetailBean.loadBook()}"/>	
+	</f:metadata>	
+</h:head>
+<h:body>
+
+	<header>
+			<div id="product-overview" class="container">
+						 <h:graphicImage 
+						 value="#{productDetailBean.in}" style="height: 77px; width: 100px" />  
+						<h1 class="product-title">#{productDetailBean.book.title}</h1>
+							<p class="product-author">
+									<span class="product-author-link"> 
+											<ui:repeat var="author" value="#{productDetailBean.book.authors}">
+													#{author.name}
+											</ui:repeat>
+									</span>
+							</p>
+						<p class="book-description"> #{productDetailBean.book.description}</p>
+			</div>
+	</header>
+</h:body>
+</html>

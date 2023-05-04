@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -41,11 +42,10 @@ public class Book {
 	@DecimalMin("20")
 	private BigDecimal price;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<@NotNull @Valid Author> authors = new ArrayList<>();
 	
 	@NotNull
-	@Future
 	private LocalDate dateRelease;
 	
 	private String summaryPath;
