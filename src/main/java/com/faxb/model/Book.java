@@ -50,6 +50,8 @@ public class Book {
 	
 	private String summaryPath;
 	
+	private String coverPath;
+	
 	public LocalDate getDateRelease() {
 		return dateRelease;
 	}
@@ -134,6 +136,14 @@ public class Book {
 
 	public void setSummaryPath(String summaryPath) {
 		this.summaryPath = summaryPath;
+	}
+
+	public String getCoverPath() {
+		return coverPath;
+	}
+
+	public void setCoverPath(String coverPath) {
+		this.coverPath = coverPath;
 	}	
 	
 }

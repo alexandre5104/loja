@@ -1,11 +1,7 @@
 package com.faxb.controllers;
 
-import java.io.File;
 import java.io.FileInputStream;
 
-import javax.swing.plaf.basic.BasicIconFactory;
-
-import org.primefaces.application.resource.barcode.BarcodeHandler;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
@@ -13,7 +9,6 @@ import com.faxb.model.Book;
 import com.faxb.repository.RepositoryBook;
 
 import jakarta.enterprise.inject.Model;
-import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 
 @Model
@@ -28,9 +23,11 @@ public class ProductDetailBean {
 
 	public ProductDetailBean() {
 
+		System.out.println("Imprimindo a imagem "+book.getCoverPath());
+		
 		image = DefaultStreamedContent.builder().stream(() -> {
 			try {
-				return new FileInputStream("C:\\temp\\alexandre.gif");
+				return new FileInputStream(book.getCoverPath());
 			} catch (Exception e) {
 				e.printStackTrace();
 				return null;

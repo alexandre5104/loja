@@ -42,7 +42,7 @@ public class AdminBooksBean {
 	@Transactional
 	public String save(){
 		String path = fileSaver.writeFile(image);
-		book.setSummaryPath(path);
+		book.setCoverPath(path);
 		repositoryBook.save(book);
 		messageHelper.addFlash(new FacesMessage("Salvo com sucesso!"));
 
